@@ -1,0 +1,7 @@
+.popup__container-img {
+  margin: auto;
+  width: auto;
+  height: auto;
+  position: relative;
+  z-index: 20;
+}

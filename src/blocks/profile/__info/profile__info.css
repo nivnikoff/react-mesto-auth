@@ -1,0 +1,24 @@
+.profile__info {
+  display: grid;
+  align-items: baseline;
+  grid-template-columns: fit-content(470px) 24px;
+  column-gap: 25px;
+  row-gap: 16px;
+  grid-template-areas:
+    "name edit-button"
+    "description description";
+}
+
+@media screen and (max-width: 918px) {
+  .profile__info {
+    margin: 26px auto 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .profile__info {
+    grid-template-columns: fit-content(254px) 18px;
+    column-gap: 10px;
+    row-gap: 14px;
+  }
+}
