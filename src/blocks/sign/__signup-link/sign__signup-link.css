@@ -1,0 +1,14 @@
+.sign__signup-link {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  color: white;
+  text-decoration: none;
+  transition: opacity .5s linear;
+  cursor: pointer;
+}
+
+.sign__signup-link:hover {
+    opacity: 0.6;
+  }

@@ -1,0 +1,9 @@
+.sign__form {
+  padding-bottom: 15px;
+}
+
+@media screen and (max-width: 550px) {
+  .sign__form {
+    padding-bottom: 20px;
+  }
+}

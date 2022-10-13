@@ -3,6 +3,10 @@
 @import url(./blocks/page/page.css);
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/header/__link/header__link.css);
+@import url(./blocks/header/__info/header__info.css);
+@import url(./blocks/header/__email/header__email.css);
+@import url(./blocks/header/__sign-out/header__sign-out.css);
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile/__avatar/profile__avatar.css);
 @import url(./blocks/profile/__avatar-edit/profile__avatar-edit.css);
@@ -39,3 +43,11 @@
 @import url(./blocks/popup/__overlay/popup__overlay.css);
 @import url(./blocks/popup/__image/popup__image.css);
 @import url(./blocks/popup/__place/popup__place.css);
+@import url(./blocks/sign/sign.css);
+@import url(./blocks/sign/__title/sign__title.css);
+@import url(./blocks/sign/__form/sign__form.css);
+@import url(./blocks/sign/__input/sign__input.css);
+@import url(./blocks/sign/__submit-button/sign__submit-button.css);
+@import url(./blocks/sign/__signup/sign__signup.css);
+@import url(./blocks/sign/__signup-text/sign__signup-text.css);
+@import url(./blocks/sign/__signup-link/sign__signup-link.css);
