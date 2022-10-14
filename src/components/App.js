@@ -134,14 +134,14 @@ function App() {
   function handleRegister(email, password) {
     auth.register(email, password)
       .then((res) => {
-        setInfoToolTipPopupOpen(true);
         setIsSuccess(true);
+        setInfoToolTipPopupOpen(true);
         history.push('/sign-in');
       })
       .catch((err) => {
         console.log(err.status);
-        setInfoToolTipPopupOpen(true);
         setIsSuccess(false);
+        setInfoToolTipPopupOpen(true);
       })
   }
   // Обработка входа
