@@ -9,22 +9,28 @@ import api from '../utils/api';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import Register from './Register';
 import Login from './Login';
+import InfoToolTip from './InfoTooltip';
+import * as auth from '../utils/auth';
 
 function App() {
   // Состояния попапов
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
+  const [isInfoToolTipPopupOpen, setInfoToolTipPopupOpen] = useState(false);
   // Состояния карточек и пользователя
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
+  // Переменная для хука useHistory
+  const history = useHistory();
   // Получаем данные пользователя и карточки
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -50,6 +56,7 @@ function App() {
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
     setEditAvatarPopupOpen(false);
+    setInfoToolTipPopupOpen(false);
     setSelectedCard(null);
   }
   // Обработчики карточки
@@ -108,17 +115,53 @@ function App() {
         console.error(err);
       });
   }
+  // Проверка наличия токена
+  React.useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      auth.checkToken(jwt)
+        .then((res) => {
+          setIsLoggedIn(true);
+          setEmail(res.data.email);
+          history.push('/');
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }, [history])
   // Обработка регистрации
-  function handleRegister() {
-
+  function handleRegister(email, password) {
+    auth.register(email, password)
+      .then((res) => {
+        setInfoToolTipPopupOpen(true);
+        setIsSuccess(true);
+        history.push('/sign-in');
+      })
+      .catch((err) => {
+        console.log(err.status);
+        setInfoToolTipPopupOpen(true);
+        setIsSuccess(false);
+      })
   }
   // Обработка входа
-  function handleLogin() {
-
+  function handleLogin(email, password) {
+    auth.login(email, password)
+      .then((res) => {
+        localStorage.setItem('jwt', res.token);
+        setIsLoggedIn(true);
+        setEmail(email);
+        history.push('/');
+      })
+      .catch((err) => {
+        console.log(err.status);
+      })
   }
   // Обработка выхода
   function handleSignOut() {
-
+    localStorage.removeItem('jwt');
+    setIsLoggedIn(false);
+    history.push('/sign-in');
   }
   // Разметка страницы
   return (
@@ -142,10 +185,10 @@ function App() {
             onCardDelete={handleCardDelete}
           />
           <Route path="/sign-up">
-            <Register handleRegister={handleRegister} />
+            <Register onRegister={handleRegister} />
           </Route>
           <Route path="/sign-in">
-            <Login handleLogin={handleLogin} />
+            <Login onLogin={handleLogin} />
           </Route>
           <Route exact path="/">
             {isLoggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
@@ -182,6 +225,13 @@ function App() {
         <ImagePopup 
           card={selectedCard} 
           onClose={closeAllPopups}
+        />
+
+        <InfoToolTip
+          name="info" 
+          isOpen={isInfoToolTipPopupOpen}
+          onClose={closeAllPopups}
+          isSuccess={isSuccess}
         />
 
       </div>

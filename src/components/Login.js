@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function Login(props) {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -39,7 +39,7 @@ function Login(props) {
           required
           onChange={handlePasswordChange} 
         />
-        <button className="sign__submit-button" type="button">Войти</button>
+        <button className="sign__submit-button" type="submit">Войти</button>
       </form>
     </section>
   );

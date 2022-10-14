@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
 function Register(props) {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -40,7 +40,7 @@ function Register(props) {
           required
           onChange={handlePasswordChange} 
         />
-        <button className="sign__submit-button" type="button">Зарегистрироваться</button>
+        <button className="sign__submit-button" type="submit">Зарегистрироваться</button>
       </form>
 
       <div className="sign__signup">
