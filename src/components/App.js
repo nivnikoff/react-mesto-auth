@@ -98,6 +98,7 @@ function App() {
     api.editAvatar(data)
       .then((newAvatar) => {
         setCurrentUser(newAvatar);
+        console.log(newAvatar);
         closeAllPopups();
       })
       .catch((err) => {
@@ -122,7 +123,7 @@ function App() {
       auth.checkToken(jwt)
         .then((res) => {
           setIsLoggedIn(true);
-          setEmail(res.data.email);
+          setEmail(res.email);
           history.push('/');
         })
         .catch((err) => {
