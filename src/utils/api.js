@@ -109,7 +109,7 @@ class Api {
 }
 
 const api = new Api({
-  url: 'http://localhost:3000'
+  url: 'nivnikoff-api.nomoredomains.club'
 });
 
 export default api;

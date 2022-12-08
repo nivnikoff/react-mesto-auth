@@ -1,4 +1,4 @@
-const authUrl = 'http://localhost:3000';
+const authUrl = 'nivnikoff-api.nomoredomains.club';
 
 function checkResponse(res) {
   if (res.ok) {

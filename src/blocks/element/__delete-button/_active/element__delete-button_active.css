@@ -1,0 +1,7 @@
+.element__delete-button_active {
+  visibility: visible;
+}
+      
+.element__delete-button_active:hover {
+    opacity: 0.6;
+}
