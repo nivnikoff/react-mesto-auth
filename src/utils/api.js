@@ -109,7 +109,7 @@ class Api {
 }
 
 const api = new Api({
-  url: 'http://nivnikoff-api.nomoredomains.club'
+  url: 'https://nivnikoff-api.nomoredomains.club'
   // url: 'http://localhost:3000'
 });
 
